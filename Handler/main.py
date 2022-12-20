@@ -1,4 +1,5 @@
 from processor.dataprocessor_service import DataProcessorService
+import os
 
 
 """
@@ -7,4 +8,8 @@ from processor.dataprocessor_service import DataProcessorService
 
 
 if __name__ == '__main__':
-    DataProcessorService("dataset.csv").run_service()
+    while True:
+        count_file = os.listdir().count("dataset.csv")
+        if count_file > 0:
+            DataProcessorService("dataset.csv").run_service()
+            os.remove("dataset.csv")

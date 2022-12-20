@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <article>
+        <table>
+            <tr>
+                <th>Размер</th>
+                <th>Тип</th>
+            </tr>
+            <tbody>
+            {% for row in processed_data %}
+                <tr>
+                    <td>
+                        {{row[1]}}
+                    </td>
+                    <td>
+                        {{row[2]}}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </article>
+
+{% endblock %}

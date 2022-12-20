@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<main>
+  <aside>
+      <h2>Категории</h2>
+      <nav>
+          <form method="post" action="/">
+             <p><input type="checkbox" name="cb_cat_1" value="Bedroom"> Bedroom</p>
+             <p><input type="checkbox" name="cb_cat_2" value="Locality"> Locality</p>
+             <p><input type="checkbox" name="cb_cat_3" value="Property_type"> Property type</p>
+             <p><input type="checkbox" name="cb_cat_4" value="Area"> Area</p>
+             <p><input type="checkbox" name="cb_cat_5" value="City"> City</p>
+             <p><input type="submit" name="but_cat" value="Выбрать"></p>
+          </form>
+      </nav>
+
+      <nav>
+             <div class="dropdown">
+                 <form method="post" action="/">
+                    <button class="dropbtn">Сортировать по</button>
+                    <div class="dropdown-content">
+                            <p><input type="radio" name="sort" value="null">----------</p>
+                            <p><input type="radio" name="sort" value="price_increase">возрастанию цены</p>
+                            <p><input type="radio" name="sort" value="price_decrease">убыванию цены</p>
+                    </div>
+                 </form>
+             </div>
+      </nav>
+
+      <nav>
+         <div class="dropdown">
+             <form method="post" action="/">
+            <button class="dropbtn">Категория цены</button>
+            <div class="dropdown-content">
+                <p><input type="radio" name="price_category" value="null">----------</p>
+                <p><input type="radio" name="price_category" value="min_price">низкая цена</p>
+                <p><input type="radio" name="price_category" value="average_price">средняя цена</p>
+                <p><input type="radio" name="price_category" value="max_price">высокая цена</p>
+            </div>
+             </form>
+         </div>
+      </nav>
+      <h4>Страница:  {{num_page}}</h4>
+      <nav>
+          <form method="post" action="/">
+              <p><input type="submit" name="page_last" value="Предыдущая страница"></p>
+          </form>
+    </nav>
+
+      <nav>
+          <form method="post" action="/">
+              <p><input type="submit" name="page_next" value="Следующая страница"></p>
+          </form>
+    </nav>
+  </aside>
+
+  <article>
+      <section>
+        <table>
+	         <tr>
+                <th>{{name_of_columns[0]}}</th>
+                <th>{{name_of_columns[1]}}</th>
+                 <th>{{name_of_columns[2]}}</th>
+                 <th>{{name_of_columns[3]}}</th>
+                 <th>{{name_of_columns[4]}}</th>
+                 <th>{{name_of_columns[5]}}</th>
+                <th>{{name_of_columns[6]}}</th>
+             </tr>
+            <tbody>
+            {% for row in processed_files %}
+                <tr>
+                    <td>
+                        {{row[0]}}
+                    </td>
+                    <td>
+                        {{row[1]}}
+                    </td>
+                    <td>
+                        {{row[2]}}
+                    </td>
+                    <td>
+                        {{row[3]}}
+                    </td>
+                    <td>
+                        {{row[4]}}
+                    </td>
+                    <td>
+                        {{row[5]}}
+                    </td>
+                    <td>
+                        {{row[6]}}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+      </section>
+  </article>
+</main>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+<html>
+
+<head>
+		<meta charset="utf-8">
+		<title>{{title}}</title>
+		<link rel="stylesheet" href="/static/stylesheets/styles.css">
+		<script>
+			window.onload = function() {
+			  document.getElementById('upbutton').style.display = 'none';
+			};
+		    window.onscroll = function()
+			{
+			  var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+			  if (scrolled > 300)
+				document.getElementById('upbutton').style.display = 'block';
+			  else
+				document.getElementById('upbutton').style.display = 'none';
+			}
+
+			var smoothJumpUp = function()
+			{
+				if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0)
+				{
+					window.scrollBy(0,-30);
+					setTimeout(smoothJumpUp, 20);
+				}
+			}
+		</script>
+</head>
+		<body>
+			<div class="wrapper">
+			<a class="upbutton" id="upbutton" href="#" onclick="smoothJumpUp(); return false;">
+				<img src="static/images/up.png" alt="Top" border="none" title="Наверх">
+			</a>
+			<header>
+				<a href="/"><img src="/static/images/logotip2.png" alt="Whitesquare logo"></a>
+				<div class="heading">
+					<h1>Выбор ренты недвижимости в городах Индии</h1>
+				</div>
+			</header>
+				{% if navmenu %}
+					<nav>
+						<ul class="top-menu">
+							{% for item in navmenu %}
+								<li><a href="{{item.addr}}">{{item.name}}</a></li>
+							{% endfor %}
+						</ul>
+					</nav>
+				{% endif %}
+				<main id="{{page_name}}">
+					{% block content %}{% endblock %}
+				</main>
+			</div>
+			<footer>
+				<div class="footer">
+				</div>
+			</footer>
+			<script type="text/javascript" src="/static/javascripts/topmenu.js"></script>
+			<script type="text/javascript" src="/static/javascripts/jqfunc.js"></script>
+		</body>
+</html>
